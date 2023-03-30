@@ -1,3 +1,9 @@
+# Belle-server
+
+## 介绍
+
+本项目是[BELLE](https://github.com/LianjiaTech/BELLE)项目的服务版,主要用来快速构建`flask`服务.具体细节请查看[BELLE/readme](./BELLE/README.md).
+
 ## <img src="assets/belle_logo.png" style="vertical-align: middle; width: 35px;"> BELLE: BE Large Language model Engine 
 本项目目标是促进中文对话大模型开源社区的发展。现阶段本项目基于BLOOM和LLAMA针对中文做了优化，模型调优仅使用由ChatGPT生产的数据（不包含任何其他数据）。
 <br/>
