@@ -11,13 +11,33 @@ pip install accelerate sentencepiece
 pip install flask
 ```
 
+## 模型下载
+
+```bash
+# 假设需要将模型下载到 `user/path/models/BELLE-LLAMA-7B-2M`
+cd user/path/models/BELLE-LLAMA-7B-2M
+
+# 将模型文件下载命令写入down.sh中
+vim down.sh
+# 将下面内容粘贴进去并保存
+wget -c https://huggingface.co/BelleGroup/BELLE-LLAMA-7B-2M/resolve/main/pytorch_model.bin
+wget https://huggingface.co/BelleGroup/BELLE-LLAMA-7B-2M/resolve/main/generation_config.json
+wget https://huggingface.co/BelleGroup/BELLE-LLAMA-7B-2M/resolve/main/config.json
+wget https://huggingface.co/BelleGroup/BELLE-LLAMA-7B-2M/resolve/main/special_tokens_map.json
+wget https://huggingface.co/BelleGroup/BELLE-LLAMA-7B-2M/resolve/main/tokenizer.model
+wget https://huggingface.co/BelleGroup/BELLE-LLAMA-7B-2M/resolve/main/tokenizer_config.json
+
+# 运行下载
+bash down.sh
+```
+
 ## 运行
 
 ```python
 from transformers import LlamaForCausalLM, AutoTokenizer
 import torch
 
-ckpt = 'BelleGroup/c'
+ckpt = 'user/path/models/BELLE-LLAMA-7B-2M'
 device = torch.device('cuda')
 model = LlamaForCausalLM.from_pretrained(ckpt, device_map='auto', low_cpu_mem_usage=True)
 tokenizer = AutoTokenizer.from_pretrained(ckpt)
@@ -69,7 +89,7 @@ class Server7B2M:
         return response
 
 
-ckpt = 'path-for-model/models/BELLE-LLAMA-7B-2M'
+ckpt = 'user/path/models/BELLE-LLAMA-7B-2M'
 model_port = 5050
 
 prompt = "Human: 写一首中文歌曲，赞美大自然 \n\nAssistant: "
